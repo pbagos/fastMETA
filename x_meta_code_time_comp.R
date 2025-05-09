@@ -18,47 +18,36 @@
 # Load necessary libraries
 library(readr)
 
-MMoM <- function(ys, vars){
-  y1 = ys[,1]
-  y2 = ys[,2]
-  var1 = vars[,1]
-  var2 = vars[,2]
-  w1 = 1/(var1)
-  w2 = 1/(var2)
-  
-  y1.weight = sum(w1*y1)/sum(w1)
-  y2.weight = sum(w2*y2)/sum(w2)
-  n1 = sum(1*(var1 > 10^-4))
-  n2 = sum(1*(var2 > 10^-4))
-  Q1 = sum((1-w1/sum(w1))^2)
-  Q2 = sum((1-w2/sum(w2))^2)
-  tau1.2.hat = max(0, (Q1-(n1-1))/((sum(w1)-sum(w1^2)/sum(w1))))
-  tau2.2.hat = max(0, (Q2-(n2-1))/((sum(w2)-sum(w2^2)/sum(w2))))
-  
-  ## variance estimate:
-  w1.star = 1/(var1 + tau1.2.hat)
-  w2.star = 1/(var2 + tau2.2.hat)
-  
-  print(sum(w1.star))
-  
-  
-  beta1.hat = sum(w1.star*y1)/sum(w1.star)
-  beta2.hat = sum(w2.star*y2)/sum(w2.star)
-  var.beta1.hat = 1/sum(w1.star)
-  var.beta2.hat = 1/sum(w2.star)
-  
-  
-  mycov.beta = sum((w1.star/sum(w1.star))*(w2.star/sum(w2.star)) * (y1 - beta1.hat)*(y2 - beta2.hat))
-  mycov.beta = sum(( var.beta1.hat* var.beta2.hat) * (y1 - beta1.hat)*(y2 - beta2.hat))
-  
-  beta.hat = c(beta1.hat, beta2.hat)
-  sigma.hat = matrix(c(var.beta1.hat, mycov.beta, mycov.beta, 
-                       var.beta2.hat), nrow = 2, byrow = T)
-  result = list(beta.hat = beta.hat, beta.cov = sigma.hat)
-  return(result)
+MMoM <- function(ys,vars){
+ys1 = ys[,1]
+ys2 = ys[,2]
+vars1 = vars[,1]
+vars2 = vars[,2]
+w1 = 1/(vars1)
+w2 = 1/(vars2)
+y1.weight = sum(w1*ys1)/sum(w1)
+y2.weight = sum(w2*ys2)/sum(w2)
+n1 = sum(1-1*(vars1 > 10^4))
+n2 = sum(1-1*(vars2 > 10^4))
+Q1 = sum(w1*(ys1-y1.weight)^2)
+Q2 = sum(w2*(ys2-y2.weight)^2)
+tau1.2.hat = max(0, (Q1-(n1-1))/(sum(w1)-sum(w1ˆ2)/sum(w1)))
+tau2.2.hat = max(0, (Q2-(n2-1))/(sum(w2)-sum(w2ˆ2)/sum(w2)))
+## variance estimate:
+w1.star = 1/(vars1 + tau1.2.hat)
+w2.star = 1/(vars2 + tau2.2.hat)
+beta1.hat = sum(w1.star*ys1)/sum(w1.star)
+beta2.hat = sum(w2.star*ys2)/sum(w2.star)
+var.beta1.hat = 1/sum(w1.star)
+var.beta2.hat = 1/sum(w2.star)
+mycov.beta = sum((w1.star/sum(w1.star))*(w2.star/sum(w2.star))
+*(ys1 - beta1.hat)*(ys2 - beta2.hat))
+beta.hat = c(beta1.hat,beta2.hat)
+sigma.hat = matrix(c(var.beta1.hat,mycov.beta,mycov.beta,
+var.beta2.hat),nrow = 2, byrow = T)
+result = list(beta.hat=beta.hat,beta.cov=sigma.hat)
+return(result)
 }
- 
-
 
 # Load the data
 df <- read_delim("fastmeta-main/fastmeta-main/generated_data.tab.txt", 

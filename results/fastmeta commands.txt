@@ -1,0 +1,7 @@
+
+# Medina-Gomez et al. data 
+python3 fastmeta.py --method method3 --input_file medina_gomez_data_input_catalog.txt --output_file fasmeta_method2_gomez.txt --het_est FE
+ 
+
+# Vennou et al.
+ python3 fastmeta.py --method method3 --input_file vennou_et_al_data.txt --output_file fasmeta_method2_vennou.txt --het_est DL

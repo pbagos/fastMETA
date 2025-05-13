@@ -27,3 +27,21 @@ fastMETA is written in Python (ver. 3.8.2)
 ```
 python fastmeta.py --method [method] --input_file [input_file_name] --output_file [output_file_name]  --het_est [heterogeneity_estimator]
 ```
+## Arguments 
+ 
+`fastMETA` accepts the following command-line arguments:
+
+- `--input_file`: Input tab-separated file with columns: `variable`, `BETA1`, `SE1`, `BETA2`, `SE2`, ...
+- `--output_file`: Output tab-separated file to save the meta-analysis results.
+- `--het_est`: Heterogeneity estimator to use. Options:
+  - `'DL'` (DerSimonian–Laird)
+  - `'ANOVA'` (Cochran–ANOVA)
+  - `'SJ'` (Sidik–Jonkman)
+  - `'FE'` (Fixed Effects Only)  
+  **Note:** Only applicable for `method1` and `method2`.
+- `--method`: Select the multivariate meta-analysis method. Options:
+  - `'method1'` — xmeta MMoM method (no `het_est` required)
+  - `'method2'` — computes correlation between beta coefficients of studies for each variable
+  - `'method3'` — assumes one shared correlation coefficient across all variables
+
+ 

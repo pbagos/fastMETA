@@ -1,5 +1,5 @@
 # fastMETA
-fastMETA: an ultra fast and efficient software tool for multivariate meta-analysis of GWAS
+fastMETA: An ultra fast and efficient software tool for multivariate meta-analysis of GWAS
 
 # Installation guide
 fastMETA is written in Python (ver. 3.8.2)
@@ -38,10 +38,13 @@ python fastmeta.py --method [method] --input_file [input_file_name] --output_fil
   - `'ANOVA'` (Cochran–ANOVA)
   - `'SJ'` (Sidik–Jonkman)
   - `'FE'` (Fixed Effects Only)  
-  **Note:** Only applicable for `method1` and `method2`.
+  **Note:** `--het_est` Only applicable for `method2` and `method3`.
 - `--method`: Select the multivariate meta-analysis method. Options:
   - `'method1'` — xmeta MMoM method (no `het_est` required)
   - `'method2'` — computes correlation between beta coefficients of studies for each variable
   - `'method3'` — assumes one shared correlation coefficient across all variables
 
- 
+ ## Example
+```
+ python fastmeta.py --method method3  --input_file example_input.txt  --output_file results.txt --het_est DL
+```

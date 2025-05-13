@@ -22,8 +22,23 @@ fastMETA is written in Python (ver. 3.8.2)
     ```
     pip install -r  requirements.txt
     ```
-    
-# Execution command 
+
+# Usage 
+## Input file structure 
+
+Ensure your data follow this structure. You may include more than two pairs of BETA and SE columns. The variable column can contain any identifiers—not necessarily rsIDs.
+
+| variable | BETA1          | BETA2          | SE1             | SE2             |
+|----------|----------------|----------------|------------------|------------------|
+| var1     | 0.0715430377   | 0.0218272071   | 0.0220505147     | 0.0220699109     |
+| var1     | 0.0966807914   | 0.0854040595   | 0.0604912844     | 0.0607718594     |
+| var1     | 0.1383389831   | 0.0450079846   | 0.0998447463     | 0.1000947719     |
+| var2     | 0.1298049745   | 0.1219084187   | 0.0261241204     | 0.0261034413     |
+| var2     | 0.0737540951   | 0.0285241921   | 0.0219609195     | 0.0219791685     |
+| var3     | 0.0912965958   | 0.0744658800   | 0.0605097372     | 0.0607870714     |
+| var3     | 0.1513790485   | 0.0512020952   | 0.0978128888     | 0.0980551991     |
+
+## Execution command 
 ```
 python fastmeta.py --method [method] --input_file [input_file_name] --output_file [output_file_name]  --het_est [heterogeneity_estimator]
 ```

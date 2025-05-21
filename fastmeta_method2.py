@@ -45,11 +45,43 @@ def random_effects_meta_analysis(betas, ses, het_est="DL"):
         tau2 = max(0, numerator - within_variance_avg)
 
     elif heterogeneity.upper() == "SJ":
-        t0 = max(0.01, np.sum((betas - np.mean(betas)) ** 2) / k)
-        vi = (variances / t0) + 1
-        weights_random = 1.0 / (vi + t0)
-        mmwo = np.sum(weights_random * betas) / np.sum(weights_random)
-        tau2 = max(0, (1 / (k - 1)) * np.sum(((betas - mmwo) ** 2) / vi))
+        
+        yi = betas
+        vi = ses**2              
+
+        # Number of studies 
+        k = yi.size
+
+      
+        X = np.ones((k, 1))
+        p = X.shape[1]            
+
+        
+        Y_bar  = yi.mean()        # sample mean of betas
+        ymci   = yi - Y_bar       # mean centered effects
+       
+        tau2_0 = np.var(ymci, ddof=0)
+
+     
+      
+        wi = 1.0 / (vi + tau2_0)
+        W  = np.diag(wi)          # (k × k)
+
+        
+        XtWX     = X.T @ W @ X
+        inv_XtWX = np.linalg.inv(XtWX)
+
+       
+        P = W - W @ X @ inv_XtWX @ X.T @ W
+
+        beta_hat = inv_XtWX @ (X.T @ W @ yi)   # shape (1,)
+        
+        fitted = X @ beta_hat                  # shape (k,)
+        Ymc    = yi - fitted                   # residuals
+        
+        RSS = float(Ymc.T @ P @ Ymc)
+
+        tau2 = tau2_0 * RSS / (k - p)
 
     elif heterogeneity.upper() == "FE":
         tau2 = 0.0

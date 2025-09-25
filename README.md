@@ -1,6 +1,9 @@
 # fastMETA
 fastMETA: An ultra fast and efficient software tool for multivariate meta-analysis of GWAS
 
+# Web tool 
+Web tool available at: https://compgen.dib.uth.gr/fastMETA/
+
 # Installation guide
 fastMETA is written in Python (ver. 3.8.2)
 

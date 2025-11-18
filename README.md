@@ -43,7 +43,7 @@ Ensure your data follow this structure. You may include more than two pairs of B
 
 ## Execution command 
 ```
-python fastmeta.py --method [method] --input_file [input_file_name] --output_file [output_file_name]  --het_est [heterogeneity_estimator]
+python3 fastmeta.py --method [method] --input_file [input_file_name] --output_file [output_file_name]  --het_est [heterogeneity_estimator]
 ```
 ## Arguments 
  
@@ -64,5 +64,5 @@ python fastmeta.py --method [method] --input_file [input_file_name] --output_fil
 
  ## Example
 ```
- python fastmeta.py --method method3  --input_file example_input.txt  --output_file results.txt --het_est DL
+ python3 fastmeta.py --method method3  --input_file example_input.txt  --output_file results.txt --het_est DL
 ```

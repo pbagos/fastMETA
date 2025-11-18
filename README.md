@@ -18,7 +18,7 @@ fastMETA is written in Python (ver. 3.8.2)
 
 4)	Open a terminal/command prompt, cd to the folder containing the get-pip.py file and run:
     ```
-    python get-pip.py
+    python3 get-pip.py
     ```
 
 5)	To install the mentioned requirements with pip, open a terminal/command prompt and run:
@@ -61,6 +61,43 @@ python3 fastmeta.py --method [method] --input_file [input_file_name] --output_fi
   - `'method1'` — xmeta MMoM method (no `het_est` required)
   - `'method2'` — computes correlation between beta coefficients of studies for each variable
   - `'method3'` — assumes one shared correlation coefficient across all variables
+
+### Additional arguments for `method3`
+
+The following options are **only used when** `--method method3` is selected and are ignored for `method1` and `method2`.
+
+- `--z_cut_off FLOAT`  
+  Absolute Z-score threshold used to filter rows when constructing the correlation matrix.  
+  Only rows where **all** non-missing |Z| values across studies are ≤ `z_cut_off` are retained for the correlation matrix.  
+  If not provided, no Z-based filtering is applied.  
+  *Default:* no Z-based filtering.
+
+- `--R2_cut_off`  
+  Enable LD-based filtering using TOP-LD for the correlation matrix.  
+  When this flag is set, TOP-LD is used across chromosomes to identify `variable` entries that are in pairs with LD  
+  `R² >= ld_R2_threshold`, and these variants are excluded from the correlation matrix.  
+  This affects **only** the correlation matrix estimation, not the meta-analysis step itself.  
+  *Default:* flag not set (no LD-based exclusion).
+
+- `--ld_population CODE`  
+  Population code for TOP-LD paths ( `EUR`, `AFR`, `EAS` and `SAS`).  
+  This is **required** for `method3` if `--R2_cut_off` is set, so that the appropriate LD reference panel is used.  
+  *Default:* not set.
+
+- `--ld_maf_threshold FLOAT`  
+  Minor allele frequency (MAF) threshold applied when reading the TOP-LD MAF file in `method3`.  
+  Variants with MAF below this threshold are excluded from the LD-based filtering step.  
+  *Default:* `0.0`.
+
+- `--ld_R2_threshold FLOAT`  
+  LD `R²` threshold used when applying TOP-LD–based filtering in `method3`.  
+  Variant pairs with `R² >= ld_R2_threshold` are considered in LD, and their corresponding `variable` entries are excluded  
+  from the correlation matrix if `--R2_cut_off` is enabled.  
+  *Default:* `0.2`.
+
+## Example
+```bash
+python3 fastmeta.py --method method3 --input_file example_input.txt --output_file results.txt --het_est DL
 
  ## Example
 ```

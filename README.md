@@ -73,7 +73,7 @@ The following options are **only used when** `--method method3` is selected and 
   *Default:* no Z-based filtering.
 
 - `--R2_cut_off`  
-  Enable LD-based filtering using TOP-LD for the correlation matrix.  
+  Enable LD-based filtering using TOP-LD for the correlation matrix. Download TOP-LD reference panel in parquet files [here](http://195.251.108.185/ref_panels/TOP_LD/EUR/SNV/)  
   When this flag is set, TOP-LD is used across chromosomes to identify `variable` entries that are in pairs with LD  
   `R² >= ld_R2_threshold`, and these variants are excluded from the correlation matrix.  
   This affects **only** the correlation matrix estimation, not the meta-analysis step itself.  

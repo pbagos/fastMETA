@@ -98,7 +98,7 @@ The following options are **only used when** `--method method3` is selected and 
 ## Example
 ```bash
 python3 fastmeta.py --method method3 --input_file example_input.txt --output_file results.txt --het_est DL
-
+```
  ## Example
 ```
  python3 fastmeta.py --method method3  --input_file example_input.txt  --output_file results.txt --het_est DL

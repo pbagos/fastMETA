@@ -77,7 +77,7 @@ The following options are **only used when** `--method method3` is selected and 
   When this flag is set, TOP-LD is used across chromosomes to identify `variable` entries that are in pairs with LD  
   `R² >= ld_R2_threshold`, and these variants are excluded from the correlation matrix.  
   This affects **only** the correlation matrix estimation, not the meta-analysis step itself.  
-  *Default:* flag not set (no LD-pruning is performed).
+  *Default:* flag not set (LD-pruning is not performed).
 
 - `--ld_population CODE`  
   Population code for TOP-LD paths ( `EUR`, `AFR`, `EAS` and `SAS`).  

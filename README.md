@@ -7,7 +7,7 @@ Web tool available at: https://compgen.dib.uth.gr/fastMETA/
 ## Citation
 If you use fastMETA in your scientific research, please consider citing:
 
-Manios GA, Kandylas D, Kylonis A, Bagos PG and Kontou PI (2025) fastMETA: a fast and efficient tool for multivariate meta-analysis of GWAS. Front. Genet. 16:1718626. doi: 10.3389/fgene.2025.1718626
+Manios, G. A., Kandylas, D., Kylonis, A., Bagos, P. G., & Kontou, P. I. fastMETA: a fast and efficient tool for multivariate meta-analysis of GWAS. Frontiers in Genetics, 16, 1718626. doi: 10.3389/fgene.2025.1718626
 
 # Installation guide
 fastMETA is written in Python (ver. 3.8.2)

@@ -4,7 +4,7 @@ fastMETA: An ultra fast and efficient software tool for multivariate meta-analys
 # Web tool 
 Web tool available at: https://compgen.dib.uth.gr/fastMETA/
 
-## Citation
+# Citation
 If you use fastMETA in your scientific research, please consider citing:
 
 Manios, G. A., Kandylas, D., Kylonis, A., Bagos, P. G., & Kontou, P. I. fastMETA: a fast and efficient tool for multivariate meta-analysis of GWAS. Frontiers in Genetics, 16, 1718626.
